@@ -1,0 +1,10 @@
+{
+  "directory_for_train": "/home/pavel/Документы/landmarks_task/Menpo/train",
+  "faces_folder_for_test": "/home/pavel/Документы/landmarks_task/Menpo/test",
+  "predictor": "/home/pavel/Документы/predictors/my_predictor.dat",
+  "xml": "./outputs/train_model.xml",
+  "predictor_output": "./outputs/my_predictor_res_on_menpo",
+  "create_data_val": false,
+  "train_model_val" : false,
+  "create_predictor_val" : true
+}

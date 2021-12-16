@@ -1,0 +1,5 @@
+{
+  "orig_data_path": "/home/pavel/Документы/landmarks_task/Menpo/test",
+  "predictor_data_path": "/home/pavel/Документы/my_predictor_menpo",
+  "graph_output_path": "./outputs/mygraph"
+}
