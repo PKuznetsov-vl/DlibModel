@@ -112,7 +112,7 @@ def count_ced_auc(errors):
 
 
 def main():
-    with open('./Plot/config_plot.json') as file:
+    with open('config_plot.json') as file:
         config = json.load(file)
     file.close()
     gt_path = config['orig_data_path']
