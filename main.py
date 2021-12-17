@@ -1,5 +1,5 @@
 import json
-
+from Plot.plot_graph import Plot
 from utils.file_managment import FileOp, PathOp, Detector, Checker, CreateXML
 from utils.Detector import Acc, Detecting
 
@@ -65,5 +65,14 @@ if __name__ == '__main__':
         print('Done')
     elif test_predictor_val:
         print('Test predictor\n Will be created .pts files ')
-        test_predictor(faces_folder_for_test,predictor,my_predictor_output)
+        #test_predictor(faces_folder_for_test,predictor,my_predictor_output)
+        with open('Plot/config_plot.json') as file:
+            config_pl = json.load(file)
+        file.close()
+        orig_data_path=config_pl['orig_data_path']
+        out_path=config_pl['graph_output_path']
+        predictor_data_path= config_pl['predictor_data_path']
+        print('Plot... ')
+        gr = Plot(gt_path=orig_data_path,predictions_path=predictor_data_path,output_path=out_path)
+        gr.main()
         print('Done')
