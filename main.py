@@ -65,7 +65,7 @@ if __name__ == '__main__':
         print('Done')
     elif test_predictor_val:
         print('Test predictor\n Will be created .pts files ')
-        #test_predictor(faces_folder_for_test,predictor,my_predictor_output)
+        test_predictor(faces_folder_for_test,predictor,my_predictor_output)
         with open('Plot/config_plot.json') as file:
             config_pl = json.load(file)
         file.close()
