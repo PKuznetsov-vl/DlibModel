@@ -1,6 +1,8 @@
 # DlibModel
 68 landmarks task
 
+https://drive.google.com/drive/folders/1InYhb6IOOXMs1cBs9Nx9KBFr7s_V6m9O?usp=sharing  - model here
+
 ## Настройка окружения для Ubuntu
 
 > sudo apt-get install build-essential cmake pkg-config
