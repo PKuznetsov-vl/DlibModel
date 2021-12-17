@@ -9,7 +9,7 @@
 
 Перейти в папку с проектом 
 
-> python -m pip install -r requirements.tx
+> python -m pip install -r requirements.txt
 
 # 
 
