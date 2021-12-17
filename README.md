@@ -4,7 +4,9 @@
 ## Настройка окружения для Ubuntu
 
 > sudo apt-get install build-essential cmake pkg-config
+> 
 > sudo apt-get install libx11-dev libatlas-base-dev
+> 
 > sudo apt-get install libgtk-3-dev libboost-python-dev
 
 Перейти в папку с проектом 
