@@ -1,7 +1,7 @@
 {
   "directory_for_train": "/home/pavel/Документы/landmarks_task/Menpo/train",
   "faces_folder_for_test": "/home/pavel/Документы/landmarks_task/Menpo/test",
-  "predictor": "/home/pavel/Документы/predictors/shape_predictor_68_face_landmarks_GTX (1).dat",
+  "predictor": "/home/pavel/Документы/predictors/mypredictor.dat",
   "xml": "./outputs/train_model.xml",
   "predictor_output": "./outputs/dlib_predictor_res_on_300W",
   "create_data_val": false,
