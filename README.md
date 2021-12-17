@@ -1,7 +1,7 @@
 # DlibModel
 68 landmarks task
 
-##Настройка окружения для Ubuntu
+## Настройка окружения для Ubuntu
 
 > sudo apt-get install build-essential cmake pkg-config
 > sudo apt-get install libx11-dev libatlas-base-dev
