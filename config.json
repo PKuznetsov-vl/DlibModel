@@ -6,5 +6,8 @@
   "predictor_output": "./outputs/dlib_predictor_res_on_300W",
   "create_data_val": false,
   "train_model_val" : false,
-  "create_predictor_val" : true
+  "create_predictor_val" : true,
+  "orig_data_path": "/home/pavel/Документы/landmarks_task/300W/test",
+  "predictor_data_path": "outputs/my_predictor_res_on_300W",
+  "graph_output_path": "outputs/mygraph_300W"
 }

@@ -15,7 +15,9 @@ faces_folder_for_test = config['faces_folder_for_test']
 predictor = config['predictor']
 xml_path = config['xml']
 my_predictor_output = config['predictor_output']
-
+orig_data_path=config['orig_data_path']
+out_path=config['graph_output_path']
+predictor_data_path= config['predictor_data_path']
 
 
 def create_data(directory,xml_path):
@@ -65,13 +67,7 @@ if __name__ == '__main__':
         print('Done')
     elif test_predictor_val:
         print('Test predictor\n Will be created .pts files ')
-        #test_predictor(faces_folder_for_test,predictor,my_predictor_output)
-        with open('Plot/config_plot.json') as file:
-            config_pl = json.load(file)
-        file.close()
-        orig_data_path=config_pl['orig_data_path']
-        out_path=config_pl['graph_output_path']
-        predictor_data_path= config_pl['predictor_data_path']
+        test_predictor(faces_folder_for_test,predictor,my_predictor_output)
         print('Plot... ')
         gr = Plot(gt_path=orig_data_path,predictions_path=predictor_data_path,output_path=out_path)
         gr.main()
