@@ -1,13 +1,13 @@
 {
   "directory_for_train": "/home/pavel/Документы/landmarks_task/Menpo/train",
-  "faces_folder_for_test": "/home/pavel/Документы/landmarks_task/Menpo/test",
-  "predictor": "/home/pavel/Документы/predictors/shape_predictor_68_face_landmarks_GTX (1).dat",
+  "faces_folder_for_test": "/home/pavel/Документы/landmarks_task/Menpo/train",
+  "predictor": "/home/pavel/Документы/predictors/my_predictor.dat",
   "xml": "./outputs/train_model.xml",
-  "predictor_output": "./outputs/dlib_predictor_res_on_300W",
+  "predictor_output": "outputs/my_predictor_res_on_menpo_train",
   "create_data_val": false,
   "train_model_val" : false,
   "create_predictor_val" : true,
-  "orig_data_path": "/home/pavel/Документы/landmarks_task/300W/test",
-  "predictor_data_path": "outputs/my_predictor_res_on_300W",
-  "graph_output_path": "outputs/mygraph_300W"
+  "orig_data_path": "/home/pavel/Документы/landmarks_task/Menpo/train",
+  "predictor_data_path": "outputs/my_predictor_res_on_menpo_train",
+  "graph_output_path": "outputs/my_pred"
 }

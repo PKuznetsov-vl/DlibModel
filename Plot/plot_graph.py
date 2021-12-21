@@ -21,11 +21,13 @@ class Plot():
     def read_points(self,dir_path, max_points, point_f):
         print('Reading directory {}'.format(dir_path))
         points = {}
-
-        for idx, fname in enumerate(os.listdir(dir_path)):
+        files = os.listdir(dir_path)
+        #images = list(filter(lambda x: x.endswith('.jpg'), files))
+        pts = list(filter(lambda x: x.endswith('.pts'), files))
+        for  fname in pts:
             if fname in point_f:
-                if max_points is not None and idx > max_points:
-                    break
+                # if max_points is not None and idx > max_points:
+                #     break
 
                 cur_path = os.path.join(dir_path, fname)
 
@@ -34,8 +36,8 @@ class Plot():
                     break
 
                 if cur_path.endswith('.pts') or cur_path.endswith('.pts1'):
-                    if idx % 100 == 0:
-                        print(idx)
+                    # if idx % 100 == 0:
+                    #     print(idx)
 
                     with open(cur_path) as cur_file:
                         lines = cur_file.readlines()
@@ -44,37 +46,38 @@ class Plot():
                         mat = np.fromstring(''.join(lines), sep=' ')
                         points[fname] = (mat[0::2], mat[1::2])
             else:
-                print('Not in Names')
+                print('Skip {} Not in Names'.format(fname))
 
         return points
 
     def count_ced(self,predicted_points, gt_points):
         ceds = defaultdict(list)
-        normalization_type = 'bbox'
+        #normalization_type = 'bbox'
         for method_name in predicted_points.keys():
             print('Counting ces. Method name {}'.format(method_name))
-            for img_name in predicted_points[method_name].keys():
-                if img_name in gt_points:
+            for pr_points in predicted_points[method_name].keys():
+                if pr_points in gt_points:
                     # print('Processing key {}'.format(img_name))
-                    x_pred, y_pred = predicted_points[method_name][img_name]
-                    x_gt, y_gt = gt_points[img_name]
+                    x_pred, y_pred = predicted_points[method_name][pr_points]
+                    x_gt, y_gt = gt_points[pr_points]
                     n_points = x_pred.shape[0]
-                    assert n_points == x_gt.shape[0], '{} != {}'.format(n_points, x_gt.shape[0])
-                    if normalization_type == 'bbox':
+                    #assert n_points == x_gt.shape[0], '{} != {}'.format(n_points, x_gt.shape[0])
+                    if n_points == x_gt.shape[0]:
                         w = np.max(x_gt) - np.min(x_gt)
                         h = np.max(y_gt) - np.min(y_gt)
                         normalization_factor = np.sqrt(h * w)
+                        diff_x = [x_gt[i] - x_pred[i] for i in range(n_points)]
+                        diff_y = [y_gt[i] - y_pred[i] for i in range(n_points)]
+                        dist = np.sqrt(np.square(diff_x) + np.square(diff_y))
+                        avg_norm_dist = np.sum(dist) / (n_points * normalization_factor)
+                        ceds[method_name].append(avg_norm_dist)
                     else:
-                        raise Exception('Wrong normalization type')
+                       print(f'Not equal to {n_points}')
 
-                    diff_x = [x_gt[i] - x_pred[i] for i in range(n_points)]
-                    diff_y = [y_gt[i] - y_pred[i] for i in range(n_points)]
-                    dist = np.sqrt(np.square(diff_x) + np.square(diff_y))
-                    avg_norm_dist = np.sum(dist) / (n_points * normalization_factor)
-                    ceds[method_name].append(avg_norm_dist)
+
                     # print('Average distance for method {} = {}'.format(method_name, avg_norm_dist))
                 else:
-                    print('Skipping key {}, because its not in the gt points'.format(img_name))
+                    print('Skipping key {}, because its not in the gt points'.format(pr_points))
             ceds[method_name] = np.sort(ceds[method_name])
 
         return ceds
@@ -111,12 +114,14 @@ class Plot():
 
         files = FileOp(self._predictions_path)
         im, pts, fullpath = files.get_files_from_dir()
-
+       # print(pts)
         predicted_points = {}
         # pred_path in args.predictions_path:
-        predicted_points[os.path.basename(self._predictions_path)] = self.read_points(self._predictions_path, max_points_to_read, pts)
-
+        predicted_points[os.path.basename(self._predictions_path)] = \
+            self.read_points(self._predictions_path, max_points_to_read, pts)
+        #print(predicted_points)
         gt_points = self.read_points(self._gt_path, max_points_to_read, pts)
+        #print(gt_points)
         # print(predicted_points.keys())
         # print(gt_points)
 
