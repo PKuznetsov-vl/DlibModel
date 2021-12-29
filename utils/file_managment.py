@@ -150,7 +150,15 @@ class CreateXML():
                 counter += 1
 
             i += 1
-            root.append(images)
+        root.append(images)
         tree = ET.ElementTree(root)
+        message = ET.tostring(root, "utf-8")
+        doc = '<?xml version="1.0" encoding="ISO-8859-1>\n<' \
+              '?xml-stylesheet type="text/xsl" href="image_metadata_stylesheet.xsl"?>' + message.decode("utf-8")
         # write the tree into an XML file
-        tree.write(f"{self._name}.xml", encoding='utf-8', xml_declaration=True)
+        # with open(self._name, 'w') as file:
+        #
+        #     file.write(doc)
+        # file.close()
+
+        tree.write(f"{self._name}", encoding='ISO-8859-1', xml_declaration=False)

@@ -27,7 +27,7 @@ def create_data(directory,xml_path):
     ch = Checker(full_path)
     ph = ch.check_pts()
     print('check_faces....')
-    del ph[110:]
+    #del ph[400:]
     img_manage = Detector(images_path=ph, directory=directory)
     values, path_values = img_manage.det()
     corr_val = []
@@ -61,7 +61,7 @@ if __name__ == '__main__':
         print('Create data tor training ')
         create_data(directory_for_train,xml_path)
         print('Done')
-    elif train_model_val:
+    if train_model_val:
         print('Train model ')
         train_model(faces_folder_for_test,predictor,xml_path)
         print('Done')
